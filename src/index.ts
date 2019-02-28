@@ -49,8 +49,8 @@ setInterval(() => {
   } else if (a < 0) {
     a = a + PI2
   }
-  const dx = Math.cos(a) * 4
-  const dy = Math.sin(a) * 4
+  const dx = Math.cos(a) * 2
+  const dy = Math.sin(a) * 2
   x += dx
   y += dy
   ctx.lineTo(x, y)
@@ -65,4 +65,4 @@ setInterval(() => {
   ctx.strokeStyle = color(h)
   ctx.beginPath()
   ctx.moveTo(x, y)
-}, 10)
+}, 20)
