@@ -20,7 +20,7 @@ function color(h: number) {
 let a = 0
 let x = Math.random() * width
 let y = Math.random() * height
-let h = 0
+let h = Math.floor(Math.random() * 360)
 ctx.strokeStyle = color(h)
 ctx.lineWidth = 2
 ctx.beginPath()
@@ -29,6 +29,8 @@ let count = 0
 let countDown = 0
 let da = 0
 let dda = 0
+
+const PI2 = Math.PI * 2
 
 setInterval(() => {
   if (countDown !== 0) {
@@ -39,7 +41,13 @@ setInterval(() => {
     dda = (Math.random() - 0.5) * 0.05
   }
   a += da
+  if (a > PI2) {
+    a = a - PI2
+  } else if (a < 0) {
+    a = a + PI2
+  }
   da += dda
+  dda *= 0.999
   const dx = Math.cos(a) * 4
   const dy = Math.sin(a) * 4
   x += dx
@@ -50,8 +58,8 @@ setInterval(() => {
   if (x < 0 || y < 0 || x >= width || y >= height) {
     x = Math.random() * width
     y = Math.random() * height
+    h = Math.floor(Math.random() * 360)
   }
-  h = (h + 1) % 360
   ctx.strokeStyle = color(h)
   ctx.beginPath()
   ctx.moveTo(x, y)
