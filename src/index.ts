@@ -22,13 +22,14 @@ let x = Math.random() * width
 let y = Math.random() * height
 let h = Math.floor(Math.random() * 360)
 ctx.strokeStyle = color(h)
-ctx.lineWidth = 2
+let w = 2
+ctx.lineWidth = w
 ctx.beginPath()
 ctx.moveTo(x, y)
 let count = 0
 let countDown = 0
-let da = 0
-let dda = 0
+let p1 = (Math.random() - 0.5) * 0.2
+let p2 = (Math.random() - 0.5) * 0.05
 
 const PI2 = Math.PI * 2
 
@@ -36,31 +37,32 @@ setInterval(() => {
   if (countDown !== 0) {
     countDown--
   } else {
-    count = countDown = Math.floor(Math.random() * 20) + 10
-    da = (Math.random() - 0.5) * 0.2
-    dda = (Math.random() - 0.5) * 0.05
+    count = countDown = Math.floor(Math.random() * 7) + 3
+    const t = Math.random() * 2 - 1
+    p2 = Math.sign(t) * t ** 2 * 0.02 - Math.sign(p1) * Math.abs(p1) ** 2 * 0.1
   }
-  a += da
+  // console.log(p1)
+  a += p1
+  p1 += p2
   if (a > PI2) {
     a = a - PI2
   } else if (a < 0) {
     a = a + PI2
   }
-  da += dda
-  dda *= 0.999
   const dx = Math.cos(a) * 4
   const dy = Math.sin(a) * 4
   x += dx
   y += dy
   ctx.lineTo(x, y)
   ctx.stroke()
-  ctx.lineWidth = 2
   if (x < 0 || y < 0 || x >= width || y >= height) {
     x = Math.random() * width
     y = Math.random() * height
     h = Math.floor(Math.random() * 360)
+    w = Math.floor(Math.random() * 6) + 2
   }
+  ctx.lineWidth = w
   ctx.strokeStyle = color(h)
   ctx.beginPath()
   ctx.moveTo(x, y)
-}, 100)
+}, 10)
