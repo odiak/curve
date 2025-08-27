@@ -4,16 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack --mode production"
+    "start": "vite",
+    "build": "vite build"
   },
   "devDependencies": {
-    "html-webpack-plugin": "^3.2.0",
-    "prettier": "^1.16.4",
-    "ts-loader": "^5.3.3",
-    "typescript": "^3.3.3333",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.2.1"
+    "prettier": "latest",
+    "typescript": "5",
+    "vite": "^7.1.3",
+    "wrangler": "^4.33.0"
   }
 }
